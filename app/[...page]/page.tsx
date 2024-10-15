@@ -15,10 +15,10 @@ interface PageProps {
 }
 
 export default async function Page(props: PageProps) {
-  const model = "page";
+  const model = "vercel";
   const content = await builder
     // Get the page content from Builder with the specified options
-    .get("page", {
+    .get("vercel", {
       userAttributes: {
         // Use the page path specified in the URL to fetch the content
        //urlPath: "/" + (props?.params?.page?.join("/") || ""),
