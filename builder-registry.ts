@@ -14,7 +14,7 @@ import dynamic from "next/dynamic";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import { Carousel } from "./components/carousel/Carousel";
 //import ColoredBox from "./components/enumColor/ColoredBoxProps";
-import { FeaturedIngredients } from "./components/featured-ingredients/featured-ingredients";
+//import { FeaturedIngredients } from "./components/featured-ingredients/featured-ingredients";
 //import { VerticalSpacer } from "./components/verticalspacer/verticalSpacer";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
