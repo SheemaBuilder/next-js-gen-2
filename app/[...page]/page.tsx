@@ -6,7 +6,7 @@ import { RenderBuilderContent } from "../../components/builder";
 import React from "react";
 
 // Replace with your Public API Key
-builder.init("ce19d97e44954c25844c3847389ed485");
+builder.init("81994bd6a6634c5e899ff6a840c845a1");
 
 interface PageProps {
   params: {
