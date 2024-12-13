@@ -13,6 +13,8 @@ pnpm dev
 # or
 bun dev
 ```
+If the page structure is [...page]/page.tsx we need another page.tsx in app folder.
+If the page structure is [[...page]]/page.tsx we need to delete page.tsx from app folder.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

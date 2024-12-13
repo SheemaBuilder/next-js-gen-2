@@ -6,7 +6,7 @@ import { RenderBuilderContent } from "../../components/builder";
 import React from "react";
 
 // Replace with your Public API Key
-builder.init("81994bd6a6634c5e899ff6a840c845a1");
+builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
 interface PageProps {
   params: {
@@ -15,14 +15,14 @@ interface PageProps {
 }
 
 export default async function Page(props: PageProps) {
-  const model = "vercel";
+  //const model = "page";
   const content = await builder
     // Get the page content from Builder with the specified options
-    .get("vercel", {
+    .get("page", {
       userAttributes: {
         // Use the page path specified in the URL to fetch the content
-       //urlPath: "/" + (props?.params?.page?.join("/") || ""),
-        urlPath :"/" + (props.params.page ? props.params.page.join("/") : ""),
+       urlPath: "/" + (props?.params?.page?.join("/") || ""),
+        //urlPath :"/" + (props.params.page ? props.params.page.join("/") : ""),
 
       },
       // Set prerender to false to return JSON instead of HTML
@@ -31,10 +31,17 @@ export default async function Page(props: PageProps) {
     // Convert the result to a promise
     .toPromise();
 
+
+
+
   return (
     <>
-      {/* Render the Builder page */}
-      <RenderBuilderContent content={content} model={model} />
+  
+     {/* Render the Builder page */}
+      <RenderBuilderContent content={content} model={"page"} />
+      
     </>
   );
 }
+
+

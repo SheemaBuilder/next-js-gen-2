@@ -1,21 +1,35 @@
 "use client";
-import { builder, Builder, BuilderComponent, Button, Section, withChildren } from "@builder.io/react";
+import {
+  builder,
+  Builder,
+  BuilderComponent,
+  Button,
+  Section,
+  withChildren,
+} from "@builder.io/react";
 import Counter from "./components/Counter/Counter";
 //import ProductSelect from "./components/ProductSelect/ProductSelect";
 import { HeroWithBuilderChildren } from "./components/HeroWithBuilderChildren/HeroWithBuilderChildren";
-import MyCustomComponent from './components/myComp/MyComp';
+import MyCustomComponent from "./components/myComp/MyComp";
 import NumberSelect from "./components/numberSelect/numberSelect";
-import Tabs  from "./components/Tabs/Tabs";
-import { numbers } from './components/numberSelect/numbers';
-import ProductSelect from './components/ProductSelect/ProductSelect'
+import Tabs from "./components/Tabs/Tabs";
+import { numbers } from "./components/numberSelect/numbers";
+import ProductSelect from "./components/ProductSelect/ProductSelect";
 import { products } from "./components/ProductSelect/products";
 import ProductApi from "./components/productFromAPI/productAPI";
 import dynamic from "next/dynamic";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
-import { Carousel } from "./components/carousel/Carousel";
+//import { Carousel } from "./components/carousel/Carousel";
 //import ColoredBox from "./components/enumColor/ColoredBoxProps";
 //import { FeaturedIngredients } from "./components/featured-ingredients/featured-ingredients";
 //import { VerticalSpacer } from "./components/verticalspacer/verticalSpacer";
+import ExampleComponent from "./components/object component/example";
+import ObjectComponent from "./components/object component latest/objComponent";
+import LoginForm from "./components/LoginForm/LoginForm";
+//import Footer from "./components/Footer/Footer";
+import ListAttributes from "./components/ListAttributes/ListAttributes";
+import ImageUploader from "./components/imageUploader/imageUploader";
+import ListWithOnChange from "./components/listWithOnChange/ListWithOnChange";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 /*
@@ -36,16 +50,54 @@ name:'Featured Ingredients'
 // 		}
 // 	],
 // });
-
-
-Builder.registerComponent(withChildren(ProductSelect), {
-  name: 'ProductSelect',
+Builder.registerComponent(ObjectComponent, {
+  name: "ObjectComponent",
   inputs: [
     {
-      name: 'productItem',
-      type: 'text',
-      //enum: products.map((product) => product.name),
-      //defaultValue: products.slice(0, 3).map((product) => product.name),
+      name: "content",
+      type: "object", // Type object for the prop
+      defaultValue: {
+        title: "Default Title",
+        description: "This is a default description.",
+      },
+      subFields: [
+        { name: "title", type: "string", defaultValue: "Default Title" },
+        {
+          name: "description",
+          type: "string",
+          defaultValue: "Default Description",
+        },
+      ],
+    },
+  ],
+});
+
+Builder.registerComponent(ExampleComponent, {
+  name: "ExampleComponent",
+  inputs: [
+    {
+      name: "exampleInput",
+      type: "object",
+    },
+  ],
+});
+
+Builder.registerComponent(LoginForm, {
+  name: "Login Form",
+  inputs: [
+    {
+      name: "exampleInput",
+      type: "text",
+      required: true,
+    },
+  ],
+});
+Builder.registerComponent(withChildren(ProductSelect), {
+  name: "ProductSelect",
+  inputs: [
+    {
+      name: "productItem",
+      type: "object",
     },
   ],
 });
@@ -68,93 +120,85 @@ Builder.registerComponent(ColoredBox,{
 )
 */
 Builder.registerComponent(ProductApi, {
-  name: 'ProductApi',
+  name: "ProductApi",
   inputs: [
     {
-      name: 'ProductApi',
-      type: 'enum',
+      name: "ProductApi",
+      type: "enum",
       enum: [], // This can remain as an empty array if you don't need static products
       defaultValue: [],
     },
   ],
 });
-Builder.registerComponent(NumberSelect, 
-  {
-    name: 'NumberSelect',
-    
-        inputs: [
-          {
-            name: 'numberList',
-            type: 'enum',
-            enum: numbers,
-            defaultValue: [],
-          },
-        ],
-  }
-);
+Builder.registerComponent(NumberSelect, {
+  name: "NumberSelect",
 
-Builder.registerComponent(ProductSelect, 
-  {
-    name: 'ProductSelect',
-    
-        inputs: [
-          {
-            name: 'Products',
-            type: 'enum',
-            enum: products,
-            defaultValue: [],
-          },
-        ],
-  }
-);
-
-
-Builder.registerComponent(MyCustomComponent, {
-  name: 'MyCustomComponent',
   inputs: [
     {
-      name: 'bool',
-      type: 'boolean',
-      defaultValue: false,
+      name: "numberList",
+      type: "enum",
+      enum: numbers,
+      defaultValue: [],
     },
-    {
-      name: 'test1',
-      type: 'boolean',
-      defaultValue: true,
-    },
-    {
-      name: 'test2',
-      type: 'boolean',
-      defaultValue: true,
-    }
-
   ],
 });
 
+Builder.registerComponent(ProductSelect, {
+  name: "ProductSelect",
 
-Builder.registerComponent(
-  
-  Counter, {
-    name: "Counter",
-    inputs: [
-      {
-        name: "initialCount",
-        type: "number",
-      },
-    ],
-  });
+  inputs: [
+    {
+      name: "Products",
+      type: "enum",
+      enum: products,
+      defaultValue: [],
+    },
+  ],
+});
 
-  Builder.registerComponent(HeroWithBuilderChildren, {
-    name: 'Hero',
-    noWrap: true,
-    // Adding defaults is important for easy usability
-    defaultChildren: [
-      { 
-        '@type': '@builder.io/sdk:Element',
-        component: { name: 'Text', options: { text: 'I am child text block!' } }
-      }
-    ]
-  });
+Builder.registerComponent(MyCustomComponent, {
+  name: "MyCustomComponent",
+  inputs: [
+    {
+      name: "bool",
+      type: "boolean",
+      defaultValue: false,
+    },
+    {
+      name: "test1",
+      type: "boolean",
+      defaultValue: true,
+    },
+    {
+      name: "test2",
+      type: "boolean",
+      defaultValue: true,
+    },
+  ],
+});
+
+Builder.registerComponent(Counter, {
+  name: "Counter",
+  models: ["page"],
+  inputs: [
+    {
+      name: "initialCount",
+      type: "number",
+    },
+  ],
+});
+
+Builder.registerComponent(HeroWithBuilderChildren, {
+  name: "Hero",
+  noWrap: true,
+  // Adding defaults is important for easy usability
+  defaultChildren: [
+    {
+      "@type": "@builder.io/sdk:Element",
+      component: { name: "Text", options: { text: "I am child text block!" } },
+    },
+  ],
+});
 
 // Register the component and its inputs
 /*
@@ -225,7 +269,7 @@ Builder.registerComponent(HeroWithBuilderChildren, {
     ] 
   })
     */
-  
+
 /*
 Builder.register("editor.settings", {
   styleStrictMode: true, // optional
@@ -271,30 +315,48 @@ Builder.register("editor.settings", {
 
 */
 
-
-
-
 Builder.registerComponent(Tabs, {
-  name: 'Tabs',
+  name: "Tabs",
   inputs: [
     {
-      name: 'tabs',
-      type: 'list',
+      name: "tabs",
+      type: "list",
+      required: true,
+      onChange: (options: {
+        get: (arg0: string) => {
+          (): any;
+          new (): any;
+          length: number;
+          slice: { (arg0: number, arg1: number): any; new (): any };
+        };
+        set: (arg0: string, arg1: any) => void;
+      }) => {
+        if (options.get("tabs").length > 6) {
+          options.set("tabs", options.get("tabs").slice(0, 6));
+          alert("maximum items is 6, delete items to continue");
+        }
+      },
       subFields: [
         {
-          name: 'label',
-          type: 'text',
-          defaultValue: 'New tab',
+          name: "label",
+          type: "text",
+          defaultValue: "New tab",
+          required: true,
         },
         {
-          name: 'content',
-          type: 'uiBlocks',
+          name: "label2",
+          type: "text",
+          defaultValue: "label",
+        },
+        {
+          name: "content",
+          type: "uiBlocks",
           defaultValue: [],
         },
       ],
       defaultValue: [
         {
-          label: 'Tab 1',
+          label: "Tab 1",
           content: [],
         },
       ],
@@ -337,3 +399,105 @@ Builder.registerComponent(withChildren(ProductDetails),{
 }
 
 )*/
+
+Builder.registerComponent(ListAttributes, {
+  name: "Attributes",
+  inputs: [
+    {
+      name: "Attributes",
+      type: "list",
+      required: true,
+      subFields: [
+        {
+          name: "attributeName",
+          type: "text",
+          helperText:
+            'Data attribute name. Should be in the format "data-{attribute-name}".',
+          required: true,
+        },
+        {
+          name: "attributeValue",
+          type: "text",
+          helperText: "Data attribute value.",
+          required: true,
+        },
+      ],
+    },
+  ],
+});
+
+Builder.registerComponent(ImageUploader, {
+  name: "ImageUploader",
+  inputs: [
+    {
+      name: "imageUrl",
+      type: "file",
+      allowedFileTypes: ["jpeg", "jpg", "png", "gif"],
+      helperText: "Upload an image file (jpeg, jpg, png, gif).",
+    },
+  ],
+});
+
+Builder.registerComponent(ListWithOnChange, {
+  name: "ListWithOnChange",
+
+  inputs: [
+    {
+      name: "items",
+      type: "list",
+      friendlyName: "Tiles",
+      required: true,
+      subFields: [
+        {
+          name: "title",
+          type: "string",
+          required: true,
+        },
+        {
+          name: "description",
+          type: "string",
+          required: true,
+        },
+        {
+          name: "imageUrl",
+          type: "file",
+          //allowedFileTypes: IMAGE_FILE_TYPES,
+          required: true,
+        },
+      ],
+      defaultValue: [
+        {
+          title: "Tile 1",
+          description: "Description 1",
+          imageUrl:
+            "https://cdn.builder.io/api/v1/image/assets%2F90293f7dc9704cb5935f357315020051%2F3e46fb8430fe462ab939ca10bbe34289",
+        },
+        {
+          title: "Tile 2",
+          description: "Description 2",
+          imageUrl:
+            "https://cdn.builder.io/api/v1/image/assets%2F90293f7dc9704cb5935f357315020051%2F3e46fb8430fe462ab939ca10bbe34289",
+        },
+        {
+          title: "Tile 3",
+          description: "Description 3",
+          imageUrl:
+            "https://cdn.builder.io/api/v1/image/assets%2F90293f7dc9704cb5935f357315020051%2F3e46fb8430fe462ab939ca10bbe34289",
+        },
+      ],
+      // onChange: (options) => {
+      //   if (options.get('items').length > 6) {
+      //     options.set('items', options.get('items').slice(0, 6))
+      //     alert('maximum items is 6, delete items to continue')
+      //   }
+      // }
+      onChange: (options: Map<string, unknown>) => {
+        const items = options.get("items");
+        if (Array.isArray(items) && items.length > 4) {
+          options.set("items", items.slice(0, 4));
+          alert("You can add maximum 4 tiles");
+        }
+      },
+    },
+  ],
+});

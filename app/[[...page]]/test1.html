@@ -1,0 +1,74 @@
+<!-- Slick CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
+<!-- jQuery and Slick JS -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<!-- Carousel HTML Structure -->
+<div class="my-carousel">
+  <div><img src="https://via.placeholder.com/800x400" alt="Slide 1" /></div>
+  <div><img src="https://via.placeholder.com/800x400" alt="Slide 2" /></div>
+  <div><img src="https://via.placeholder.com/800x400" alt="Slide 3" /></div>
+</div>
+
+<!-- Custom CSS -->
+<style>
+  .my-carousel {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .my-carousel img {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  /* Custom styles for arrows */
+  .slick-prev,
+  .slick-next {
+    font-size: 24px;
+    color: #333;
+    opacity: 0.75;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+  .slick-prev {
+    left: -50px;
+  }
+
+  .slick-next {
+    right: -50px;
+  }
+
+  /* Adjust arrow visibility for smaller screens */
+  @media (max-width: 1024px) {
+    .slick-prev,
+    .slick-next {
+      display: none;
+    }
+  }
+</style>
+
+<!-- Initialize Slick Carousel -->
+<script>
+  $(document).ready(function () {
+    $('.my-carousel').slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      arrows: true, // Ensure arrows are enabled
+      prevArrow: '<button type="button" class="slick-prev">❮</button>',
+      nextArrow: '<button type="button" class="slick-next">❯</button>',
+    });
+  });
+</script>

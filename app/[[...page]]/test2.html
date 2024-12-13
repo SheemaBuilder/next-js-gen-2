@@ -1,0 +1,87 @@
+<!-- Include Slick Carousel CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
+<!-- HTML Markup for Slick Carousel -->
+<div class="custom-slick-carousel">
+  <div class="slide">
+    <img src="https://via.placeholder.com/800x400" alt="Slide 1" />
+    <h3>Slide 1 Title</h3>
+    <p>This is the description for slide 1.</p>
+  </div>
+  <div class="slide">
+    <img src="https://via.placeholder.com/800x400" alt="Slide 2" />
+    <h3>Slide 2 Title</h3>
+    <p>This is the description for slide 2.</p>
+  </div>
+  <div class="slide">
+    <img src="https://via.placeholder.com/800x400" alt="Slide 3" />
+    <h3>Slide 3 Title</h3>
+    <p>This is the description for slide 3.</p>
+  </div>
+</div>
+
+<!-- Include jQuery and Slick Carousel JS -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<!-- Initialize Slick Carousel -->
+<script>
+  $(document).ready(function () {
+    $('.custom-slick-carousel').slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      arrows: true,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            arrows: true,
+          },
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            arrows: false,
+          },
+        },
+      ],
+    });
+  });
+</script>
+
+<!-- Custom CSS for Slick Carousel -->
+<style>
+  .custom-slick-carousel {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .custom-slick-carousel .slide {
+    text-align: center;
+  }
+
+  .custom-slick-carousel img {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  /* Hide arrows on tablet and mobile */
+  .slick-prev,
+  .slick-next {
+    display: none;
+  }
+
+  /* Show arrows only on desktop */
+  @media (min-width: 1024px) {
+    .slick-prev,
+    .slick-next {
+      display: block;
+    }
+  }
+</style>
