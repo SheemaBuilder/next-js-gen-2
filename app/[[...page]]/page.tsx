@@ -21,9 +21,10 @@ export default async function Page(props: PageProps) {
     .get(model, {
       userAttributes: {
         // Use the page path specified in the URL to fetch the content
-       urlPath: "/" + (props?.params?.page?.join("/") || ""),
+      // urlPath: "/" + (props?.params?.page?.join("/") || ""),
        // urlPath :"/" + (props.params.page ? props.params.page.join("/") : ""),
-
+       urlPath : props?.params?.page? "/" + props.params.page.join("/"): "/"
+     
       },
       // Set prerender to false to return JSON instead of HTML
       prerender: false,
